@@ -29,6 +29,8 @@ return {
         "svelte",
         "astro",
         "rust",
+        "vim",
+        "vue",
       },
       auto_install = true,
       -- ensure_installed = "all", -- one of "all" or a list of languages
@@ -52,6 +54,16 @@ return {
       -- auto tag
       autotag = {
         enable = true,
+      },
+
+      setup = {
+        volar = function()
+          require("lazyvim.util").lsp.on_attach(function(client, _)
+            if client.name == "volar" then
+              client.server_capabilities.documentFormattingProvider = false
+            end
+          end)
+        end,
       },
     },
   },

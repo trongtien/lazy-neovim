@@ -46,6 +46,10 @@ return {
   opts = {
     ---@type lspconfig.options
     servers = {
+      tailwindcss = {
+        filetypes_exclude = { "markdown" },
+        filetypes_include = {},
+      },
       tsserver = {
         root_dir = require("lspconfig").util.root_pattern("package.json", "tsconfig.json"),
         single_file_support = false,
@@ -188,6 +192,23 @@ return {
             require("twoslash-queries").attach(client, bufnr)
           end
         end)
+      end,
+
+      tailwindcss = function(_, opts)
+        local tw = require("lspconfig.server_configurations.tailwindcss")
+        opts.filetypes = opts.filetypes or {}
+
+        -- Add default filetypes
+        vim.list_extend(opts.filetypes, tw.default_config.filetypes)
+
+        -- Remove excluded filetypes
+        --- @param ft string
+        opts.filetypes = vim.tbl_filter(function(ft)
+          return not vim.tbl_contains(opts.filetypes_exclude or {}, ft)
+        end, opts.filetypes)
+
+        -- Add additional filetypes
+        vim.list_extend(opts.filetypes, opts.filetypes_include or {})
       end,
     },
   },

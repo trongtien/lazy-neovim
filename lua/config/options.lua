@@ -1,30 +1,28 @@
--- Enable spell check by default unless in vscode
-if not vim.g.vscode then
-  vim.o.spell = true
-end
--- Set conceal level to 0
-vim.o.conceallevel = 0
+vim.opt.signcolumn = "yes"
+vim.opt.scrolloff = 50
+vim.opt.colorcolumn = "80"
+vim.opt.smartindent = true
+vim.opt.expandtab = true
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.formatoptions:append({ "r" })
 
-vim.scriptencoding = "utf-8"
-vim.opt.encoding = "utf-8"
-vim.opt.fileencoding = "utf-8"
+local float = { focusable = true, style = "minimal", border = "rounded" }
 
-vim.opt.timeoutlen = 250
-vim.opt.timeout = true
-vim.opt.updatetime = 250
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, float)
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, float)
 
--- Enable python3 provider back for CopilotChat.nvim
--- vim.g.loaded_python3_provider = 0
--- Disable providers
-vim.g.loaded_ruby_provider = 0
-vim.g.loaded_perl_provider = 0
-vim.g.loaded_node_provider = 0
+vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#d8bd92" })
 
--- Setup options for Neovide
--- Install neovide: ❯ brew install --ignore-dependencies  neovide
-if vim.g.neovide then
-  vim.o.guifont = "OperatorMonoLig Nerd Font:h20"
-  vim.g.neovide_hide_mouse_when_typing = true
-  vim.g.neovide_cursor_antialiasing = false
-  vim.g.neovide_fullscreen = true
-end
+vim.filetype.add({
+  extension = { mdx = "mdx", analog = "analog" },
+})
+
+vim.filetype.add({
+  extension = { [".all-contributorsrc"] = ".all-contributorsrc" },
+})
+
+-- vim.treesitter.language.register("markdown", "mdx")
+vim.treesitter.language.register("angular", "analog")
+vim.treesitter.language.register("json", ".all-contributorsrc")

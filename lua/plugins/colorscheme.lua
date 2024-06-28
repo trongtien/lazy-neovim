@@ -1,13 +1,14 @@
 return {
+  { "Shatur/neovim-ayu" },
   {
-    "craftzdog/solarized-osaka.nvim",
-    branch = "osaka",
-    lazy = true,
-    priority = 1000,
-    opts = function()
-      return {
-        transparent = true,
-      }
+    "love-pengy/lillilac.nvim",
+    opts = { lazy = true },
+    config = function(opts)
+      vim.cmd.colorscheme("lillilac")
     end,
   },
+  -- {
+  --   "LazyVim/LazyVim",
+  --   opts = { colorscheme = "ayu" },
+  -- },
 }

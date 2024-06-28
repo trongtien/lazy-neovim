@@ -1,31 +1,8 @@
 return {
-  -- cmdline tools and lsp servers
   {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "stylua",
-        -- formatters
-        "eslint_d",
-        "prettier",
-        "prettierd",
-        "biome",
-        -- code spell
-        "codespell",
-        "misspell",
-        "cspell",
-        -- markdown
-        "markdownlint",
-        -- rustywind for tailwindcss
-        "rustywind",
-        -- astro
-        "astro-language-server",
-        -- Solidity
-        "solidity",
-        -- Python
-        "ruff",
-        "isort",
-      },
-    },
+    opts = function(_, opts)
+      table.insert(opts.ensure_installed, "prettier")
+    end,
   },
 }

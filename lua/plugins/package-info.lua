@@ -1,18 +1,17 @@
 return {
   {
     "vuki656/package-info.nvim",
+    ft = "json",
     dependencies = { "MunifTanjim/nui.nvim" },
-    keys = {
-      {
-        "<leader>ns",
-        "<cmd>lua require('package-info').show()<cr>",
-        silent = true,
-        noremap = true,
-        desc = "Show Package Info",
-      },
-    },
     config = function()
-      require("telescope").load_extension("package_info")
+      require("package-info").setup({
+        autostart = false,
+        package_manager = "npm",
+        colors = {
+          outdated = "#db4b4b",
+        },
+        hide_up_to_date = true,
+      })
     end,
   },
 }

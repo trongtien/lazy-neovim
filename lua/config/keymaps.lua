@@ -1,48 +1,78 @@
+local keymap = vim.keymap
 local opts = { noremap = true, silent = true }
 
--- remap save to save all
-vim.keymap.set("n", ":w", ":wa")
-vim.keymap.set("n", ":W", ":wa")
+-- Increment / Decrement
+keymap.set("n", "+", "<C-a>")
+keymap.set("n", "-", "<C-x>")
 
--- stupid :Q
-vim.keymap.set("n", ":Q", ":q")
-
-vim.keymap.set("n", ":e", ":e!")
-vim.keymap.set("n", ":E", ":e!")
-
--- prettier
--- vim.keymap.set("n", ":F", vim.cmd.Prettier)
-
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
-
--- greatest remap ever
-vim.keymap.set("x", "<leader>p", '"_dP')
-
--- next greatest remap ever : asbjornHaland
-vim.keymap.set("n", "<leader>y", '"+y')
-vim.keymap.set("v", "<leader>y", '"+y')
-vim.keymap.set("n", "<leader>Y", '"+Y')
-vim.keymap.set("n", "<leader>d", '"_d')
-vim.keymap.set("v", "<leader>d", '"_d')
-
-vim.keymap.set("n", "<leader>Y", '"+Y')
-vim.keymap.set("n", "<leader>ig", ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>")
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
-
-vim.keymap.set("n", "<leader>bb", "<cmd>Telescope buffers<cr>", { desc = "Telescope buffers" })
-vim.keymap.set("n", "<leader>mm", "<cmd>Telescope neoclip<cr>", { desc = "Telescope Clipboard" })
-vim.keymap.set("n", "<leader>bsd", "<cmd>%bd|e#|bd#<cr>|'<cr>", { desc = "Delete surrounding buffers" })
-
--- Increment/decrement
-vim.keymap.set("n", "+", "<C-a>")
-vim.keymap.set("n", "-", "<C-x>")
+-- Delete a word backwards
+keymap.set("n", "dw", "vb_d")
 
 -- Select all
-vim.keymap.set("n", "<C-a>", "gg<S-v>G")
+keymap.set("n", "<C-a>", "gg<S-v>G")
+
+-- Jumplist
+keymap.set("n", "<C-m>", "<C-i>", opts)
+
+-- New Tab
+keymap.set("n", "te", "tabedit", opts)
+keymap.set("n", "<tab>", ":tabnext<Return>", opts)
+keymap.set("n", "<s-tab>", ":tabprev<Return>", opts)
 
 -- Split window
-vim.keymap.set("n", "ss", ":split<Return>", opts)
-vim.keymap.set("n", "sv", ":vsplit<Return>", opts)
+keymap.set("n", "ss", ":split<Return>", opts)
+keymap.set("n", "sv", ":vsplit<Return>", opts)
+keymap.set("n", "te", ":tabedit<Return>", opts)
+keymap.set("n", "tw", ":tabclose<Return>", opts)
+
+-- Quick search within buffer
+-- This is my fav
+local builtin = require("telescope.builtin")
+keymap.set("n", "<leader>P", function()
+  builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
+    winblend = 10,
+    previewer = false,
+  }))
+end, opts)
+
+-- Move window
+keymap.set("n", "sh", "<C-w>h")
+keymap.set("n", "sk", "<C-w>k")
+keymap.set("n", "sj", "<C-w>j")
+keymap.set("n", "sl", "<C-w>l")
+keymap.set("i", "jj", "<ESC>")
+
+-- Resize window
+keymap.set("n", "<C-w><left>", "<C-w><")
+
+-- Package-info keymap
+keymap.set(
+  "n",
+  "<leader>cpt",
+  "<cmd>lua require('package-info').toggle()<cr>",
+  { silent = true, noremap = true, desc = "Toggle" }
+)
+keymap.set(
+  "n",
+  "<leader>cpd",
+  "<cmd>lua require('package-info').delete()<cr>",
+  { silent = true, noremap = true, desc = "Delete package" }
+)
+keymap.set(
+  "n",
+  "<leader>cpu",
+  "<cmd>lua require('package-info').update()<cr>",
+  { silent = true, noremap = true, desc = "Update package" }
+)
+keymap.set(
+  "n",
+  "<leader>cpi",
+  "<cmd>lua require('package-info').install()<cr>",
+  { silent = true, noremap = true, desc = "Install package" }
+)
+keymap.set(
+  "n",
+  "<leader>cpc",
+  "<cmd>lua require('package-info').change_version()<cr>",
+  { silent = true, noremap = true, desc = "Change package version" }
+)

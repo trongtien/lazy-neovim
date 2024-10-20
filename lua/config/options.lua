@@ -1,28 +1,20 @@
-vim.opt.signcolumn = "yes"
-vim.opt.scrolloff = 50
-vim.opt.colorcolumn = "80"
-vim.opt.smartindent = true
-vim.opt.expandtab = true
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.formatoptions:append({ "r" })
+local opt = vim.opt
+local global = vim.g
 
-local float = { focusable = true, style = "minimal", border = "rounded" }
+-- Use clipboard
+opt.clipboard = "unnamedplus"
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, float)
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, float)
+-- Word wrap
+opt.wrap = true
+opt.breakindent = true
+opt.linebreak = true
+opt.conceallevel = 0
+opt.cmdheight = 0
 
-vim.api.nvim_set_hl(0, "FloatBorder", { fg = "#d8bd92" })
+-- Autoformat on save
+global.autoformat = true
 
-vim.filetype.add({
-  extension = { mdx = "mdx", analog = "analog" },
-})
-
-vim.filetype.add({
-  extension = { [".all-contributorsrc"] = ".all-contributorsrc" },
-})
-
--- vim.treesitter.language.register("markdown", "mdx")
-vim.treesitter.language.register("angular", "analog")
-vim.treesitter.language.register("json", ".all-contributorsrc")
+-- Root Neotree
+vim.g.root_spec = { "cwd" }
+vim.g.omni_sql_no_default_maps = 1
+vim.g.python3_host_prog = "/opt/homebrew/bin/python3"

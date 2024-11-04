@@ -13,6 +13,7 @@ return {
         "tsx",
         "php",
         "html",
+        "go",
       },
       user_default_options = {
         RGB = true, -- #RGB hex codes

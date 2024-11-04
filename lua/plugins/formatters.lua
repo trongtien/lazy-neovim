@@ -15,7 +15,6 @@ return {
       json = { "prettier" },
       jsonc = { "prettier" },
       yaml = { "prettier" },
-      -- php = { "intelephense" },
       markdown = { "prettier" },
       ["markdown.mdx"] = { "prettier" },
       graphql = { "prettier" },

@@ -1,0 +1,47 @@
+### Install sass language 
+- npm install --global some-sass-language-server
+- Config lsp
+
+```
+    local lspconfig = require("lspconfig")
+    lspconfig.somesass_ls.setup({
+        filetypes = { "sass", "scss", "less", "css" },
+    })
+```
+
+### Install format premitter 
+- npm install -g prettier@2.8.8
+
+### Install language server ts
+- npm install -g typescript-language-server
+
+
+### Install cspell
+- npx cspell-tool@latest
+
+
+### Config startShip
+
+* Install terminal icon
+
+```
+Import-Module -Name Terminal-Icons
+Install-Module -Name Terminal-Icons -Repository PSGallery
+
+```
+
+
+* Config window profile if using window
+* edit $PROFILE
+```
+Set-Alias -Name vim -Value nvim
+Set-Alias ll ls
+Set-Alias g git
+Set-Alias grep findstr
+Set-Alias tig "C:\Program Files\Git\usr\bin\tig.exe"
+Set-Alias less "C:\Program Files\Git\usr\bin\less.exe"
+
+
+Invoke-Expression (&starship init powershell)
+Enable-TransientPrompt
+```

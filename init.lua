@@ -12,8 +12,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
 -- install plugins and options 
+require("option-visual-mode")
 require("vim-options")
 require("vim-helpers")
 require("help-floating")

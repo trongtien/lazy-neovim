@@ -21,10 +21,9 @@ require("floating-term")
 require("lazy").setup({
     spec = "plugins",
     change_detection = { notify = false },
-    opts = {
-        rocks = {
-            enabled = false
-        }
+    rocks = {
+        enabled = false, -- Tắt hỗ trợ luarocks
+        hererocks = true, -- Sử dụng hererocks nếu bạn đã cài đặt
     }
 })
 

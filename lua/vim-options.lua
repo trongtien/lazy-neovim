@@ -2,7 +2,7 @@ vim.cmd("set expandtab")
 vim.cmd("set tabstop=4")
 vim.cmd("set softtabstop=4")
 vim.cmd("set shiftwidth=4")
-vim.g.mapleader = ' '
+vim.g.mapleader = " "
 vim.cmd("set number")
 vim.cmd("set lazyredraw")
 vim.cmd("set nowrap")
@@ -19,6 +19,10 @@ vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#ead84e" })
 vim.api.nvim_set_option("clipboard", "unnamed")
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
+
+
+vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
+vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 
 -- move selected lines
@@ -41,5 +45,6 @@ end, { desc = "Copy absolute path to clipboard" })
 
 
 vim.keymap.set("i", "jk", "<Esc>", { noremap = true, silent = true })
+vim.keymap.set("i", "jj", "<Esc>", { noremap = true, silent = true })
 vim.keymap.set("n", "<C-s>", ":w<CR>", { noremap = true, silent = true })
 

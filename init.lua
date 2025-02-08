@@ -22,8 +22,8 @@ require("lazy").setup({
     spec = "plugins",
     change_detection = { notify = false },
     rocks = {
-        enabled = false, -- Tắt hỗ trợ luarocks
-        hererocks = true, -- Sử dụng hererocks nếu bạn đã cài đặt
+        enabled = false, 
+        hererocks = true, 
     }
 })
 

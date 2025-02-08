@@ -13,6 +13,7 @@ return {
 		})
 		require("transparent").clear_prefix("NeoTree")
 		require("transparent").clear_prefix("lualine")
+
 		-- depends on pc, these settings are needed
 		vim.cmd("highlight Normal guibg=NONE")
 		vim.cmd("highlight Lualine guibg=NONE")

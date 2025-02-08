@@ -1,3 +1,4 @@
+
 return {
     "nvimtools/none-ls.nvim",
     config = function()
@@ -11,7 +12,8 @@ return {
                 null_ls.builtins.formatting.isort,
                 null_ls.builtins.formatting.gofumpt,
                 null_ls.builtins.code_actions.impl,
-                null_ls.builtins.completion.spell
+                null_ls.builtins.completion.spell,
+                null_ls.builtins.diagnostics.codespell
             },
         })
         vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})

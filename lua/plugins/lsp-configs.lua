@@ -64,23 +64,7 @@ return {
             lspconfig.tailwindcss.setup({
                 capabilities = capabilities,
             })
-            -- golang
-            -- lspconfig.gopls.setup({
-            --     capabilities = capabilities,
-            --     -- settings = {
-            --     -- 	gopls = {
-            --     -- 		experimentalPostfixCompletions = true,
-            --     -- 		analyses = {
-            --     -- 			unusedparams = true,
-            --     -- 			shadow = true,
-            --     -- 		},
-            --     -- 		staticcheck = true,
-            --     -- 	},
-            --     -- },
-            --     -- init_options = {
-            --     -- 	usePlaceholders = true,
-            --     -- },
-            -- })
+
             lspconfig.pyright.setup({ capabilities = capabilities })
 
             vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
@@ -90,6 +74,7 @@ return {
             vim.keymap.set("n", "gr", vim.lsp.buf.references, {})
             vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {})
             vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, {})
+
             -- list all methods in a file
             -- working with go confirmed, don't know about other, keep changing as necessary
             vim.keymap.set("n", "<leader>fm", function()
